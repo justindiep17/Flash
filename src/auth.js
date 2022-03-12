@@ -17,12 +17,6 @@ async function loginUser() {
   const provider = new GoogleAuthProvider();
   try {
     const result = await signInWithPopup(auth, provider);
-    const { user } = result;
-    const { isNewUser } = getAdditionalUserInfo(result);
-    if (isNewUser) {
-      // if new user, create a new user document in Firestore
-      console.log("new");
-    }
   } catch (e) {
     console.error(e);
   }
