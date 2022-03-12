@@ -2,24 +2,12 @@ import Home from "./routes/Home";
 import Page2 from "./Page2";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useState } from "react";
-import { ThemeProvider, createTheme } from "@mui/material/styles";
+import { ThemeProvider } from "@mui/material/styles";
 import { onAuthStateChanged } from "firebase/auth";
-import { auth } from "./firebase";
-import { authContext } from "./auth";
+import { auth } from "./config/firebase/firebaseSetup";
+import flashTheme from "./config/flashTheme";
 
 function App() {
-  const flashTheme = createTheme({
-    palette: {
-      type: "light",
-      primary: {
-        main: "#004299",
-      },
-      secondary: {
-        main: "#ffc130",
-      },
-    },
-  });
-
   const [user, setUser] = useState(null);
 
   onAuthStateChanged(auth, (user) => {

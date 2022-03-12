@@ -1,5 +1,6 @@
-import { auth } from "./firebase.js";
+import { auth } from "./config/firebase/firebaseSetup";
 import { useAuthState } from "react-firebase-hooks/auth";
+import Navbar from "./components/Navbar";
 
 function Page2() {
   const [user, loading, error] = useAuthState(auth);
@@ -8,6 +9,7 @@ function Page2() {
   }
   return (
     <div className="App">
+      <Navbar />
       <h1>Hey</h1>
     </div>
   );
