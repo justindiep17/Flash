@@ -6,6 +6,7 @@ import { ThemeProvider } from "@mui/material/styles";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./config/firebase/firebaseSetup";
 import flashTheme from "./config/flashTheme";
+import Dashboard from "./pages/Dashboard";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -24,6 +25,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />}></Route>
           <Route path="2" element={<Page2 />}></Route>
+          <Route path="dashboard" element={<Dashboard />}></Route>
         </Routes>
       </BrowserRouter>
     </ThemeProvider>

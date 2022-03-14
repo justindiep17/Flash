@@ -2,7 +2,8 @@ import { createTheme } from "@mui/material/styles";
 const flashTheme = createTheme({
   palette: {
     primary: {
-      main: "#004299",
+      main: "#004182",
+      secondary: "#FFCC00",
     },
     secondary: {
       main: "#ffc130",
@@ -19,8 +20,12 @@ const flashTheme = createTheme({
         root: {
           textTransform: "none",
           boxShadow: "none",
-          borderRadius: "0",
           fontWeight: "700",
+          borderRadius: "5px",
+          fontSize: "1rem",
+          "&:hover": {
+            boxShadow: "none",
+          },
         },
       },
       defaultProps: {
@@ -28,7 +33,15 @@ const flashTheme = createTheme({
       },
     },
   },
-  spacing: {},
+  breakpoints: {
+    values: {
+      xs: 0,
+      sm: 700,
+      md: 1050,
+      lg: 1400,
+      xl: 1750,
+    },
+  },
 });
 
 export default flashTheme;

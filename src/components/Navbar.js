@@ -1,4 +1,4 @@
-import { Button, Grid } from "@mui/material";
+import { Button, Grid, Typography } from "@mui/material";
 import { makeStyles, createStyles } from "@mui/styles";
 import { loginUser, logoutUser } from "../auth.js";
 import { auth } from "../config/firebase/firebaseSetup.js";
@@ -12,9 +12,23 @@ const useStyles = makeStyles((theme) =>
     navbar: {
       display: "flex",
       flexDirection: "row",
+      justifyContent: "space-between",
+      alignItems: "center",
+      padding: "15px 10%",
+      height: "6vh",
+      background: "white",
+    },
+    navButtons: {
+      display: "flex",
+      flexDirection: "row",
       justifyContent: "flex-end",
       alignItems: "center",
-      padding: "20px 20px",
+      padding: "0",
+    },
+    title: {
+      fontWeight: 800,
+      fontSize: "2.5rem",
+      color: theme.palette.primary.main,
     },
   })
 );
@@ -27,11 +41,14 @@ function Navbar() {
   return (
     <Grid item xs={12}>
       <nav className={styles.navbar}>
+        <Typography item className={styles.title}>
+          Flash
+        </Typography>
         {!user && (
-          <div>
+          <div className={styles.navButtons}>
             <Button
               variant={"text"}
-              sx={{ marginRight: "24px", marginLeft: "12px" }}
+              sx={{ marginRight: "36px", marginLeft: "18px" }}
               onClick={() => {
                 navigate("/", { replace: true });
               }}
@@ -42,10 +59,10 @@ function Navbar() {
           </div>
         )}
         {user && (
-          <div>
+          <div className={styles.navButtons}>
             <Button
               variant={"text"}
-              sx={{ marginRight: "24px", marginLeft: "12px" }}
+              sx={{ marginRight: "36px", marginLeft: "18px" }}
               onClick={() => {
                 navigate("/", { replace: true });
               }}
