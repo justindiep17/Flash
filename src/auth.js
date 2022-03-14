@@ -25,4 +25,5 @@ async function loginUser() {
 function logoutUser() {
   signOut(auth);
 }
+
 export { authContext, useAuthStatus, loginUser, logoutUser };
