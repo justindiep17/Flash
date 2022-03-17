@@ -1,6 +1,8 @@
 import { Button, Grid } from "@mui/material";
 import { styled } from "@mui/system";
 import AddIcon from "@mui/icons-material/Add";
+import { createDeck } from "../config/decks";
+import { useAuthStatus } from "../auth";
 
 const AddDeckButtonStyled = styled(Button)(({ theme }) => ({
   background: "white",
@@ -19,7 +21,8 @@ const AddDeckButtonStyled = styled(Button)(({ theme }) => ({
   },
 }));
 
-function AddDeckButton({ name }) {
+function AddDeckButton({ name = "New Deck" }) {
+  const authStatus = useAuthStatus();
   return (
     <Grid
       item
@@ -32,7 +35,15 @@ function AddDeckButton({ name }) {
         padding: "20px",
       }}
     >
-      <AddDeckButtonStyled>
+      <AddDeckButtonStyled
+        onClick={() => {
+          if (authStatus) {
+            createDeck(name, authStatus.uid);
+          } else {
+            console.error("null user");
+          }
+        }}
+      >
         <AddIcon sx={{ marginBottom: "5px" }} />
         <div>Add Deck</div>
       </AddDeckButtonStyled>

@@ -7,10 +7,10 @@ import {
 } from "firebase/auth";
 import { auth } from "./config/firebase/firebaseSetup";
 
-const authContext = createContext({ user: null, setUser: () => {} });
+const AuthContext = createContext(null);
 
 function useAuthStatus() {
-  return useContext(authContext);
+  return useContext(AuthContext);
 }
 
 async function loginUser() {
@@ -26,4 +26,4 @@ function logoutUser() {
   signOut(auth);
 }
 
-export { authContext, useAuthStatus, loginUser, logoutUser };
+export { AuthContext, useAuthStatus, loginUser, logoutUser };
