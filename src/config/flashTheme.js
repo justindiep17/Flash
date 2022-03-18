@@ -1,4 +1,5 @@
 import { createTheme } from "@mui/material/styles";
+
 const flashTheme = createTheme({
   palette: {
     primary: {
@@ -12,6 +13,14 @@ const flashTheme = createTheme({
   typography: {
     allVariants: {
       fontFamily: `"Raleway", "Helvetica", "Arial", sans-serif`,
+    },
+    h2: {
+      fontSize: "2rem",
+      fontWeight: "700",
+    },
+    h6: {
+      fontSize: "1.4rem",
+      fontWeight: "700",
     },
   },
   components: {

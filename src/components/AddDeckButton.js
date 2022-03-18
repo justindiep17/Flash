@@ -3,6 +3,7 @@ import { styled } from "@mui/system";
 import AddIcon from "@mui/icons-material/Add";
 import { createDeck } from "../config/decks";
 import { useAuthStatus } from "../auth";
+import { useNavigate } from "react-router-dom";
 
 const AddDeckButtonStyled = styled(Button)(({ theme }) => ({
   background: "white",
@@ -22,6 +23,7 @@ const AddDeckButtonStyled = styled(Button)(({ theme }) => ({
 }));
 
 function AddDeckButton({ name = "New Deck" }) {
+  const navigate = useNavigate();
   const authStatus = useAuthStatus();
   return (
     <Grid
@@ -38,7 +40,9 @@ function AddDeckButton({ name = "New Deck" }) {
       <AddDeckButtonStyled
         onClick={() => {
           if (authStatus) {
-            createDeck(name, authStatus.uid);
+            createDeck(name, authStatus.uid).then((id) =>
+              navigate(`/edit/${id}`)
+            );
           } else {
             console.error("null user");
           }

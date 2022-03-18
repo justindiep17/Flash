@@ -1,8 +1,8 @@
-import { Grid } from "@mui/material";
+import { Grid, Typography } from "@mui/material";
 import { makeStyles, createStyles } from "@mui/styles";
 import AddDeckButton from "../components/AddDeckButton";
 import { useAuthStatus } from "../auth";
-import { getDocs, query, where } from "firebase/firestore";
+import { query, where } from "firebase/firestore";
 import { decks } from "../config/firebase/firebaseSetup";
 import DeckButton from "../components/DeckButton";
 import { useState } from "react";
@@ -15,6 +15,7 @@ const useStyles = makeStyles((theme) =>
       width: "100vw",
       justifyContent: "center",
       alignItems: "center",
+      paddingTop: "10vh",
     },
     decksArray: {
       maxWidth: 350,
@@ -39,12 +40,26 @@ function Dashboard() {
   if (loading) {
     return <div>Loading</div>;
   } else {
+    values.sort((a, b) => {
+      if (a.lastModified.isEqual(b.lastModified)) {
+        return 0;
+      } else if (a.lastModified < b.lastModified) {
+        return -1;
+      } else {
+        return 1;
+      }
+    });
     return (
       <main>
-        <Grid item xs={12} className={styles.pageContent}>
+        <Grid item xs={12} className={styles.pageContent} direction="column">
+          <Grid item width="1050px" padding="0px 20px">
+            <Typography variant="h6" textAlign={"left"}>
+              Recent Decks
+            </Typography>
+          </Grid>
           <Grid container className={styles.decksArray}>
             <AddDeckButton />
-            {values.map((doc) => (
+            {values.slice(0, 5).map((doc) => (
               <DeckButton name={doc.title}></DeckButton>
             ))}
           </Grid>
