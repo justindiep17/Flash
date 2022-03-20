@@ -9,6 +9,7 @@ async function createDeck(title, uid) {
       uid: uid,
       createdAt: serverTimestamp(),
       lastModified: serverTimestamp(),
+      description: "",
     });
     return docRef.id;
   } else {
@@ -17,4 +18,8 @@ async function createDeck(title, uid) {
   }
 }
 
-export { createDeck };
+function createDeck2(data) {
+  console.log(data);
+}
+
+export { createDeck, createDeck2 };

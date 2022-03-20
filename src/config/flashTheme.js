@@ -18,9 +18,13 @@ const flashTheme = createTheme({
       fontSize: "2rem",
       fontWeight: "700",
     },
-    h6: {
+    h5: {
       fontSize: "1.4rem",
       fontWeight: "700",
+    },
+    h6: {
+      fontSize: "1rem",
+      fontWeight: "600",
     },
   },
   components: {
@@ -39,6 +43,20 @@ const flashTheme = createTheme({
       },
       defaultProps: {
         variant: "contained",
+      },
+    },
+    MuiTextField: {
+      styleOverrides: {
+        root: {
+          textTransform: "none",
+          boxShadow: "none",
+          fontWeight: "700",
+          borderRadius: "5px",
+          fontSize: "1rem",
+          "&:hover": {
+            boxShadow: "none",
+          },
+        },
       },
     },
   },

@@ -27,13 +27,23 @@ const useStyles = makeStyles((theme) =>
         maxWidth: 1050,
       },
     },
+    sectionTitle: {
+      width: 350,
+      display: "flex",
+      [theme.breakpoints.up("sm")]: {
+        width: 700,
+      },
+      [theme.breakpoints.up("md")]: {
+        width: 1050,
+      },
+    },
   })
 );
 
 function Dashboard() {
   const styles = useStyles();
   const user = useAuthStatus();
-  const [values, loading, error, snapshot] = useCollectionDataOnce(
+  const [values, loading, error] = useCollectionDataOnce(
     query(decks, where("uid", "==", `${user.uid}`))
   );
 
@@ -52,7 +62,7 @@ function Dashboard() {
     return (
       <main>
         <Grid item xs={12} className={styles.pageContent} direction="column">
-          <Grid item width="1050px" padding="0px 20px">
+          <Grid item className={styles.sectionTitle} padding="0px 20px">
             <Typography variant="h6" textAlign={"left"}>
               Recent Decks
             </Typography>
