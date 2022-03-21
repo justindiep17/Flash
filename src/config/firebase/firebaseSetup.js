@@ -11,8 +11,21 @@ const auth = getAuth(firebaseApp);
 const db = getFirestore(firebaseApp);
 const fn = getFunctions(firebaseApp);
 
+const withIDConverter = {
+  toFirestore(data) {
+    return data;
+  },
+  fromFirestore(snapshot, options) {
+    const data = snapshot.data(options);
+    return {
+      id: snapshot.id,
+      ...data,
+    };
+  },
+};
+
 // db stuff
-const users = collection(db, "users");
-const decks = collection(db, "decks");
+const users = collection(db, "users").withConverter(withIDConverter);
+const decks = collection(db, "decks").withConverter(withIDConverter);
 
 export { auth, db, fn, users, decks };
