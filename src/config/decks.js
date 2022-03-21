@@ -1,5 +1,5 @@
-import { addDoc, serverTimestamp } from "firebase/firestore";
-import { decks } from "./firebase/firebaseSetup";
+import { addDoc, serverTimestamp, doc } from "firebase/firestore";
+import { decks, db } from "./firebase/firebaseSetup";
 
 async function createDeck(title, uid) {
   if (uid) {
@@ -18,8 +18,8 @@ async function createDeck(title, uid) {
   }
 }
 
-function createDeck2(data) {
-  console.log(data);
+function getDeckRef(id) {
+  return doc(db, "decks", id);
 }
 
-export { createDeck, createDeck2 };
+export { createDeck, getDeckRef };

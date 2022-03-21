@@ -19,7 +19,7 @@ const flashTheme = createTheme({
       fontWeight: "700",
     },
     h5: {
-      fontSize: "1.4rem",
+      fontSize: "1.5rem",
       fontWeight: "700",
     },
     h6: {

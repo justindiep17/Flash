@@ -1,11 +1,12 @@
 import { useParams } from "react-router-dom";
 import { makeStyles, createStyles } from "@mui/styles";
 import { decks } from "../config/firebase/firebaseSetup";
-import { FieldPath, documentId } from "firebase/firestore";
+import { FieldPath, documentId, doc } from "firebase/firestore";
 import { query, where } from "firebase/firestore";
 import { useCollectionDataOnce } from "react-firebase-hooks/firestore";
 import { Grid, Typography } from "@mui/material";
 import EditDeckForm from "../components/EditDeckForm";
+import { getDeckRef } from "../config/decks";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -43,6 +44,8 @@ function EditDeckPage() {
     return <div>Deck Doesn't Exist</div>;
   } else {
     const deck = values[0];
+    const deckRef = getDeckRef(id);
+    console.log(deckRef);
     return (
       <main>
         <Grid container className={styles.pageContent} direction="column">
@@ -51,7 +54,7 @@ function EditDeckPage() {
               Edit Your Study Deck
             </Typography>
           </Grid>
-          <EditDeckForm deck={deck} />
+          <EditDeckForm deck={deck} deckRef={deckRef} />
         </Grid>
       </main>
     );

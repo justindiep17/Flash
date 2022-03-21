@@ -1,12 +1,12 @@
 import { useForm, useFieldArray, Controller } from "react-hook-form";
 import { TextField } from "@mui/material";
-import { makeStyles, createStyles, StylesContext } from "@mui/styles";
+import { makeStyles, createStyles } from "@mui/styles";
 import { styled } from "@mui/system";
-import { Grid, Typography, IconButton } from "@mui/material";
-import { useState } from "react";
-import { createDeck, createDeck2 } from "../config/decks";
+import { Grid, Typography, IconButton, Button } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
+import AddIcon from "@mui/icons-material/Add";
+import { updateDoc, serverTimestamp } from "firebase/firestore";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -54,6 +54,31 @@ const useStyles = makeStyles((theme) =>
   })
 );
 
+const AddCardButtonStyled = styled(Button)(({ theme }) => ({
+  color: "black",
+  background: "#e8f4ff",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  width: "100%",
+  "&:hover": {
+    background: "#d5dfe8",
+  },
+  fontWeight: 500,
+  borderRadius: "7px",
+  padding: "12px 20px",
+}));
+
+const SubmitButtonStyled = styled(Button)(({ theme }) => ({
+  width: "20%",
+  background: "#3ac9a1",
+  padding: "20px 30px",
+  marginTop: "15px",
+  "&:hover": {
+    background: "#2fa382",
+  },
+}));
+
 function AddCardInput() {
   return (
     <Grid width="100%">
@@ -63,7 +88,7 @@ function AddCardInput() {
   );
 }
 
-function EditDeckForm({ deck }) {
+function EditDeckForm({ deck, deckRef }) {
   const styles = useStyles();
   const { register, control, handleSubmit, reset, trigger, setError } = useForm(
     {
@@ -71,19 +96,20 @@ function EditDeckForm({ deck }) {
     }
   );
 
-  const onSubmit = (data) => {
-    console.log(data);
-    data.preventDefault();
+  const onSubmit = async (data) => {
+    await updateDoc(deckRef, {
+      title: data.title,
+      description: data.description,
+      cards: data.cards,
+      lastModified: serverTimestamp(),
+    });
   };
 
   const handleOnDragEnd = (result) => {
-    console.log(result.source.index);
-    console.log(result.destination.index);
-    swap(result.source.index, result.destination.index);
-    console.log(fields);
+    move(result.source.index, result.destination.index);
   };
 
-  const { fields, remove, append, swap } = useFieldArray({
+  const { fields, remove, append, move } = useFieldArray({
     control,
     name: "cards",
   });
@@ -152,7 +178,7 @@ function EditDeckForm({ deck }) {
                             alignItems="center"
                           >
                             {index + 1}{" "}
-                            <IconButton>
+                            <IconButton onClick={() => remove(index)}>
                               <DeleteIcon fontSize="small" />
                             </IconButton>
                           </Typography>
@@ -196,13 +222,12 @@ function EditDeckForm({ deck }) {
           )}
         </Droppable>
       </DragDropContext>
-      <button
-        type="button"
-        onClick={() => append({ firstName: "bill", lastName: "luo" })}
-      >
-        append
-      </button>
-      <input type="submit" />
+      <AddCardButtonStyled onClick={() => append({ term: "", definition: "" })}>
+        Add Card
+      </AddCardButtonStyled>
+      <Grid width="100%" display="flex" justifyContent="flex-end">
+        <SubmitButtonStyled type="submit">Save Changes</SubmitButtonStyled>
+      </Grid>
     </form>
   );
 }
