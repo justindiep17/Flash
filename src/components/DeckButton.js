@@ -1,5 +1,7 @@
 import { Button, Grid } from "@mui/material";
 import { styled } from "@mui/system";
+import { useAuthStatus } from "../auth";
+import { useNavigate } from "react-router-dom";
 
 const DeckButtonStyled = styled(Button)(({ theme }) => ({
   background: "white",
@@ -15,7 +17,9 @@ const DeckButtonStyled = styled(Button)(({ theme }) => ({
   },
 }));
 
-function DeckButton({ name }) {
+function DeckButton({ deck }) {
+  const authStatus = useAuthStatus();
+  const navigate = useNavigate();
   return (
     <Grid
       item
@@ -28,7 +32,17 @@ function DeckButton({ name }) {
         padding: "20px",
       }}
     >
-      <DeckButtonStyled>{name}</DeckButtonStyled>
+      <DeckButtonStyled
+        onClick={() => {
+          if (authStatus) {
+            navigate(`/edit/${deck.id}`);
+          } else {
+            console.error("null user");
+          }
+        }}
+      >
+        {deck.title}
+      </DeckButtonStyled>
     </Grid>
   );
 }

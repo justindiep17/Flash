@@ -7,6 +7,7 @@ import { useCollectionDataOnce } from "react-firebase-hooks/firestore";
 import { Grid, Typography } from "@mui/material";
 import EditDeckForm from "../components/EditDeckForm";
 import { getDeckRef } from "../config/decks";
+import Loading from "../components/Loading";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -37,7 +38,7 @@ function EditDeckPage() {
     query(decks, where(documentId(), "==", id))
   );
   if (loading) {
-    return <div>Loading</div>;
+    return <Loading />;
   } else if (error) {
     return <div>Something Went Wrong</div>;
   } else if (values.length === 0) {

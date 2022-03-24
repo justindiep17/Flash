@@ -7,6 +7,8 @@ import { decks } from "../config/firebase/firebaseSetup";
 import DeckButton from "../components/DeckButton";
 import { useState } from "react";
 import { useCollectionDataOnce } from "react-firebase-hooks/firestore";
+import Loading from "../components/Loading";
+import Navbar from "../components/Navbar";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -48,7 +50,7 @@ function Dashboard() {
   );
 
   if (loading) {
-    return <div>Loading</div>;
+    return <Loading />;
   } else {
     values.sort((a, b) => {
       if (a.lastModified.isEqual(b.lastModified)) {
@@ -61,6 +63,7 @@ function Dashboard() {
     });
     return (
       <main>
+        <Navbar />
         <Grid item xs={12} className={styles.pageContent} direction="column">
           <Grid item className={styles.sectionTitle} padding="0px 20px">
             <Typography variant="h6" textAlign={"left"}>
@@ -70,7 +73,7 @@ function Dashboard() {
           <Grid container className={styles.decksArray}>
             <AddDeckButton />
             {values.slice(0, 5).map((doc) => (
-              <DeckButton name={doc.title}></DeckButton>
+              <DeckButton deck={doc}></DeckButton>
             ))}
           </Grid>
         </Grid>

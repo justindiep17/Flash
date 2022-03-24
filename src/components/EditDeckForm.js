@@ -70,7 +70,6 @@ const AddCardButtonStyled = styled(Button)(({ theme }) => ({
 }));
 
 const SubmitButtonStyled = styled(Button)(({ theme }) => ({
-  width: "20%",
   background: "#3ac9a1",
   padding: "20px 30px",
   marginTop: "15px",
@@ -140,7 +139,7 @@ function EditDeckForm({ deck, deckRef }) {
         InputProps={{
           style: {
             fontWeight: 500,
-            height: "4.5rem",
+            height: "6rem",
             justifyContent: "flex-start",
             paddingBottom: "10px",
           },

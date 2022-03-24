@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme) =>
       flexDirection: "row",
       justifyContent: "space-between",
       alignItems: "center",
-      padding: "15px 10%",
+      padding: "20px 20px",
       height: "6vh",
       background: "white",
     },
@@ -48,14 +48,25 @@ function Navbar() {
           <div className={styles.navButtons}>
             <Button
               variant={"text"}
-              sx={{ marginRight: "36px", marginLeft: "18px" }}
+              sx={{
+                marginRight: "18px",
+                marginLeft: "18px",
+                color: "#424242",
+              }}
               onClick={() => {
                 navigate("/", { replace: true });
               }}
             >
               Home
             </Button>
-            <FilledButton text={"Sign In"} onClick={loginUser} />
+            <Button
+              variant={"text"}
+              sx={{ marginRight: "36px", marginLeft: "18px", color: "#424242" }}
+              onClick={loginUser}
+            >
+              Sign In
+            </Button>
+            <FilledButton text={"Sign Up"} onClick={loginUser} />
           </div>
         )}
         {user && (

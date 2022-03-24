@@ -5,6 +5,7 @@ const flashTheme = createTheme({
     primary: {
       main: "#004182",
       secondary: "#FFCC00",
+      contrastText: "#303030",
     },
     secondary: {
       main: "#ffc130",
@@ -34,8 +35,8 @@ const flashTheme = createTheme({
           textTransform: "none",
           boxShadow: "none",
           fontWeight: "700",
-          borderRadius: "5px",
-          fontSize: "1rem",
+          borderRadius: "3.5px",
+          fontSize: "0.9rem",
           "&:hover": {
             boxShadow: "none",
           },

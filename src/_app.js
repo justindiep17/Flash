@@ -8,12 +8,13 @@ import flashTheme from "./config/flashTheme";
 import Dashboard from "./pages/Dashboard";
 import EditDeckPage from "./pages/EditDeckPage";
 import { useAuthState } from "react-firebase-hooks/auth";
+import Loading from "./components/Loading";
 
 function App() {
   const [user, loading, error] = useAuthState(auth);
 
   if (loading) {
-    return <main>Loading</main>;
+    return <Loading />;
   }
 
   return (
