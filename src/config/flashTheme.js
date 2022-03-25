@@ -16,7 +16,7 @@ const flashTheme = createTheme({
       fontFamily: `"Raleway", "Helvetica", "Arial", sans-serif`,
     },
     h2: {
-      fontSize: "2rem",
+      fontSize: "1.75rem",
       fontWeight: "700",
     },
     h5: {

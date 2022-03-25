@@ -35,7 +35,7 @@ function DeckButton({ deck }) {
       <DeckButtonStyled
         onClick={() => {
           if (authStatus) {
-            navigate(`/edit/${deck.id}`);
+            navigate(`/deck/${deck.id}`);
           } else {
             console.error("null user");
           }
