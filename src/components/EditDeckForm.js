@@ -7,6 +7,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import AddIcon from "@mui/icons-material/Add";
 import { updateDoc, serverTimestamp } from "firebase/firestore";
+import { useNavigate } from "react-router-dom";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -88,6 +89,7 @@ function AddCardInput() {
 }
 
 function EditDeckForm({ deck, deckRef }) {
+  const navigate = useNavigate();
   const styles = useStyles();
   const { register, control, handleSubmit, reset, trigger, setError } = useForm(
     {
@@ -102,6 +104,7 @@ function EditDeckForm({ deck, deckRef }) {
       cards: data.cards,
       lastModified: serverTimestamp(),
     });
+    navigate(`/deck/${deck.id}`);
   };
 
   const handleOnDragEnd = (result) => {

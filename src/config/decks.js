@@ -1,4 +1,4 @@
-import { addDoc, serverTimestamp, doc } from "firebase/firestore";
+import { addDoc, serverTimestamp, doc, deleteDoc } from "firebase/firestore";
 import { decks, db } from "./firebase/firebaseSetup";
 
 async function createDeck(title, uid) {
@@ -18,8 +18,13 @@ async function createDeck(title, uid) {
   }
 }
 
+async function deleteDeck(id) {
+  const response = await deleteDoc(getDeckRef(id));
+  return response;
+}
+
 function getDeckRef(id) {
   return doc(db, "decks", id);
 }
 
-export { createDeck, getDeckRef };
+export { createDeck, getDeckRef, deleteDeck };

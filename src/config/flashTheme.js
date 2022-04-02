@@ -3,12 +3,19 @@ import { createTheme } from "@mui/material/styles";
 const flashTheme = createTheme({
   palette: {
     primary: {
-      main: "#004182",
-      secondary: "#FFCC00",
-      contrastText: "#303030",
+      main: "#0047AB",
+      secondary: "#ffd500",
+      contrastText: "black",
+      warning: "green",
     },
     secondary: {
       main: "#ffc130",
+    },
+    error: {
+      main: "#BF0000",
+    },
+    info: {
+      main: "#000000",
     },
   },
   typography: {
@@ -19,8 +26,12 @@ const flashTheme = createTheme({
       fontSize: "1.75rem",
       fontWeight: "700",
     },
-    h5: {
+    h4: {
       fontSize: "1.5rem",
+      fontWeight: "700",
+    },
+    h5: {
+      fontSize: "1.1rem",
       fontWeight: "700",
     },
     h6: {

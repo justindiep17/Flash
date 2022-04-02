@@ -1,4 +1,4 @@
-import { Button, Grid, Typography } from "@mui/material";
+import { Button, Grid, Typography, AppBar } from "@mui/material";
 import { makeStyles, createStyles } from "@mui/styles";
 import { loginUser, logoutUser } from "../auth.js";
 import { auth } from "../config/firebase/firebaseSetup.js";
@@ -10,13 +10,15 @@ import ProfileImageButton from "./ProfileImageButton";
 const useStyles = makeStyles((theme) =>
   createStyles({
     navbar: {
-      display: "flex",
-      flexDirection: "row",
+      display: "flex !important",
+      flexDirection: "row !important",
       justifyContent: "space-between",
       alignItems: "center",
-      padding: "20px 20px",
-      height: "6vh",
-      background: "white",
+      padding: "10px 50px !important",
+      height: "10vh",
+      background: "white !important",
+      borderBottom: "0.5px solid #303030",
+      boxShadow: "none !important",
     },
     navButtons: {
       display: "flex",
@@ -40,8 +42,8 @@ function Navbar() {
 
   return (
     <Grid item xs={12}>
-      <nav className={styles.navbar}>
-        <Typography item className={styles.title}>
+      <AppBar className={styles.navbar}>
+        <Typography item variant="h4">
           Flash
         </Typography>
         {!user && (
@@ -51,7 +53,7 @@ function Navbar() {
               sx={{
                 marginRight: "18px",
                 marginLeft: "18px",
-                color: "#424242",
+                color: "black",
               }}
               onClick={() => {
                 navigate("/", { replace: true });
@@ -61,7 +63,7 @@ function Navbar() {
             </Button>
             <Button
               variant={"text"}
-              sx={{ marginRight: "36px", marginLeft: "18px", color: "#424242" }}
+              sx={{ marginRight: "36px", marginLeft: "18px", color: "black" }}
               onClick={loginUser}
             >
               Sign In
@@ -73,9 +75,9 @@ function Navbar() {
           <div className={styles.navButtons}>
             <Button
               variant={"text"}
-              sx={{ marginRight: "36px", marginLeft: "18px" }}
+              sx={{ marginRight: "36px", marginLeft: "18px", color: "black" }}
               onClick={() => {
-                navigate("/", { replace: true });
+                navigate("/dashboard", { replace: true });
               }}
             >
               Dashboard
@@ -86,7 +88,7 @@ function Navbar() {
             ></ProfileImageButton>
           </div>
         )}
-      </nav>
+      </AppBar>
     </Grid>
   );
 }

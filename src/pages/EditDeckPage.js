@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { makeStyles, createStyles } from "@mui/styles";
 import { decks } from "../config/firebase/firebaseSetup";
 import { FieldPath, documentId, doc } from "firebase/firestore";
@@ -15,7 +15,8 @@ const useStyles = makeStyles((theme) =>
       display: "flex",
       justifyContent: "center",
       alignItems: "center",
-      paddingTop: "10vh",
+      paddingTop: "16vh",
+      paddingBottom: "8vh",
     },
     sectionTitle: {
       width: 350,
@@ -50,7 +51,7 @@ function EditDeckPage() {
       <main>
         <Grid container className={styles.pageContent} direction="column">
           <Grid item className={styles.sectionTitle} marginBottom="20px">
-            <Typography variant="h5" textAlign={"left"}>
+            <Typography variant="h4" textAlign={"left"}>
               Edit Your Study Deck
             </Typography>
           </Grid>
