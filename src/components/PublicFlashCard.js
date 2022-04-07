@@ -1,17 +1,11 @@
-import { useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { makeStyles, createStyles, StylesContext } from "@mui/styles";
-import { decks } from "../config/firebase/firebaseSetup";
-import { FieldPath, documentId, doc } from "firebase/firestore";
-import { query, where } from "firebase/firestore";
-import { useCollectionDataOnce } from "react-firebase-hooks/firestore";
 import { Grid, Typography, IconButton } from "@mui/material";
-import EditDeckForm from "../components/EditDeckForm";
-import { getDeckRef } from "../config/decks";
-import Loading from "../components/Loading";
 import ReactCardFlip from "react-card-flip";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
+import { useTheme } from "@mui/material/styles";
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -46,6 +40,7 @@ const useStyles = makeStyles((theme) =>
       flexGrow: 1,
     },
     arrowBtn: {
+      textAlign: "center",
       "&:hover": {
         backgroundColor: "white !important",
       },
@@ -65,7 +60,8 @@ function PublicFlashCard({
   const [showTerm, setShowTerm] = useState(true);
   const [hideDef, setHideDef] = useState(false);
   const [handleAction, setHandleAction] = useState("default");
-
+  const theme = useTheme();
+  const notSmallScreen = useMediaQuery(theme.breakpoints.up("sm"));
   const handleClick = () => {
     setShowTerm(!showTerm);
     setHideDef(false);
@@ -83,33 +79,66 @@ function PublicFlashCard({
             justifyContent="space-between"
             alignItems="stretch"
           >
-            <IconButton
-              disableRipple
-              className={styles.arrowBtn}
-              onClick={() => {
-                setShowTerm(true);
-                setHideDef(true);
-                handlePrevious();
-              }}
+            <Grid
+              item
+              display="flex"
+              alignItem="center"
+              justifyContent="center"
+              xs={2}
             >
-              {enablePreviousBtn && <ArrowBackIosIcon fontSize="large" />}
-            </IconButton>
-
-            <Typography className={styles.flashCardText} onClick={handleClick}>
-              {!hideDef && `${card.definition}`}
-            </Typography>
-
-            <IconButton
-              disableRipple
-              className={styles.arrowBtn}
-              onClick={() => {
-                setShowTerm(true);
-                setHideDef(true);
-                handleNext();
-              }}
+              <IconButton
+                disableRipple
+                className={styles.arrowBtn}
+                onClick={() => {
+                  setShowTerm(true);
+                  setHideDef(true);
+                  handlePrevious();
+                }}
+              >
+                {enablePreviousBtn && (
+                  <ArrowBackIosIcon
+                    fontSize={notSmallScreen ? "large" : "small"}
+                  />
+                )}
+              </IconButton>
+            </Grid>
+            <Grid
+              item
+              display="flex"
+              alignItem="center"
+              justifyContent="center"
+              xs={8}
             >
-              {enableNextBtn && <ArrowForwardIosIcon fontSize="large" />}
-            </IconButton>
+              <Typography
+                className={styles.flashCardText}
+                onClick={handleClick}
+              >
+                {!hideDef && `${card.definition}`}
+              </Typography>
+            </Grid>
+            <Grid
+              item
+              display="flex"
+              alignItem="center"
+              justifyContent="center"
+              xs={2}
+            >
+              <IconButton
+                disableRipple
+                className={styles.arrowBtn}
+                onClick={() => {
+                  setShowTerm(true);
+                  setHideDef(true);
+                  handleNext();
+                }}
+              >
+                {enableNextBtn && (
+                  <ArrowForwardIosIcon
+                    fontSize={notSmallScreen ? "large" : "small"}
+                  />
+                )}
+              </IconButton>
+            </Grid>
           </Grid>
         )}
       </Grid>
@@ -120,34 +149,68 @@ function PublicFlashCard({
             display="flex"
             flexDirection="row"
             justifyContent="space-between"
-            alignItems="stretch"
+            alignItems="center"
           >
-            <IconButton
-              disableRipple
-              className={styles.arrowBtn}
-              onClick={() => {
-                setShowTerm(true);
-                setHideDef(true);
-                handlePrevious();
-              }}
+            <Grid
+              item
+              display="flex"
+              alignItem="center"
+              justifyContent="center"
+              xs={2}
             >
-              {enablePreviousBtn && <ArrowBackIosIcon fontSize="large" />}
-            </IconButton>
-
-            <Typography className={styles.flashCardText} onClick={handleClick}>
-              {card.term}
-            </Typography>
-            <IconButton
-              disableRipple
-              className={styles.arrowBtn}
-              onClick={() => {
-                setShowTerm(true);
-                setHideDef(true);
-                handleNext();
-              }}
+              <IconButton
+                disableRipple
+                className={styles.arrowBtn}
+                onClick={() => {
+                  setShowTerm(true);
+                  setHideDef(true);
+                  handlePrevious();
+                }}
+              >
+                {enablePreviousBtn && (
+                  <ArrowBackIosIcon
+                    fontSize={notSmallScreen ? "large" : "small"}
+                  />
+                )}
+              </IconButton>
+            </Grid>
+            <Grid
+              item
+              display="flex"
+              alignItem="center"
+              justifyContent="center"
+              xs={8}
             >
-              {enableNextBtn && <ArrowForwardIosIcon fontSize="large" />}
-            </IconButton>
+              <Typography
+                className={styles.flashCardText}
+                onClick={handleClick}
+              >
+                {card.term}
+              </Typography>
+            </Grid>
+            <Grid
+              item
+              display="flex"
+              alignItem="center"
+              justifyContent="center"
+              xs={2}
+            >
+              <IconButton
+                disableRipple
+                className={styles.arrowBtn}
+                onClick={() => {
+                  setShowTerm(true);
+                  setHideDef(true);
+                  handleNext();
+                }}
+              >
+                {enableNextBtn && (
+                  <ArrowForwardIosIcon
+                    fontSize={notSmallScreen ? "large" : "small"}
+                  />
+                )}
+              </IconButton>
+            </Grid>
           </Grid>
         )}
       </Grid>

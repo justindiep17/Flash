@@ -20,6 +20,7 @@ const DeckButtonStyled = styled(Button)(({ theme }) => ({
 function DeckButton({ deck }) {
   const authStatus = useAuthStatus();
   const navigate = useNavigate();
+  console.log(deck);
   return (
     <Grid
       item
@@ -42,6 +43,7 @@ function DeckButton({ deck }) {
         }}
       >
         {deck.title}
+        {/* {deck.lastModified.toDate()} */}
       </DeckButtonStyled>
     </Grid>
   );

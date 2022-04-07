@@ -10,6 +10,7 @@ import { useCollectionDataOnce } from "react-firebase-hooks/firestore";
 import Loading from "../components/Loading";
 import Navbar from "../components/Navbar";
 import NotFoundPage from "./NotFoundPage";
+
 const useStyles = makeStyles((theme) =>
   createStyles({
     pageContent: {
@@ -56,24 +57,25 @@ function Dashboard() {
   const [values, loading, error] = useCollectionDataOnce(
     query(decks, where("uid", "==", userID))
   );
-  console.log(user);
   if (loading) {
     return <Loading />;
-  } else if (!user) {
+  } else if (!user || error) {
     return <NotFoundPage />;
   } else {
-    values.sort((a, b) => {
-      if (a.lastModified.isEqual(b.lastModified)) {
-        return 0;
-      } else if (a.lastModified < b.lastModified) {
-        return -1;
-      } else {
-        return 1;
-      }
-    });
+    if (values) {
+      values.sort((a, b) => {
+        if (a.lastModified.isEqual(b.lastModified)) {
+          return 0;
+        } else if (a.lastModified < b.lastModified) {
+          return -1;
+        } else {
+          return 1;
+        }
+      });
+    }
     return (
       <main style={{ background: "#F5F5F5" }}>
-        <Grid item xs={12} className={styles.pageContent} direction="column">
+        <Grid container className={styles.pageContent} direction="column">
           <Grid item className={styles.sectionTitle} padding="0px 20px">
             <Typography variant="h6" textAlign={"left"}>
               Recent Decks
@@ -81,9 +83,10 @@ function Dashboard() {
           </Grid>
           <Grid container className={styles.decksArray}>
             <AddDeckButton />
-            {values.slice(0, 5).map((doc) => (
-              <DeckButton deck={doc}></DeckButton>
-            ))}
+            {values &&
+              values
+                .slice(0, 5)
+                .map((doc) => <DeckButton deck={doc}></DeckButton>)}
           </Grid>
         </Grid>
       </main>

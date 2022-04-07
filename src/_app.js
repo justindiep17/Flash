@@ -10,6 +10,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import Loading from "./components/Loading";
 import PublicDeckPage from "./pages/PublicDeckPage";
 import Navbar from "./components/Navbar";
+import NotFoundPage from "./pages/NotFoundPage";
 
 function App() {
   const [user, loading, error] = useAuthState(auth);
@@ -28,6 +29,7 @@ function App() {
             <Route path="dashboard" element={<Dashboard />}></Route>
             <Route path="deck/:id" element={<PublicDeckPage />}></Route>
             <Route path="edit/:id" element={<EditDeckPage />}></Route>
+            <Route path="*" element={<NotFoundPage />}></Route>
           </Routes>
         </BrowserRouter>
       </AuthContext.Provider>

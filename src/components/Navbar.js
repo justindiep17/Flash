@@ -14,11 +14,15 @@ const useStyles = makeStyles((theme) =>
       flexDirection: "row !important",
       justifyContent: "space-between",
       alignItems: "center",
-      padding: "10px 50px !important",
-      height: "10vh",
+      padding: "10px 15px !important",
       background: "white !important",
       borderBottom: "0.5px solid #303030",
       boxShadow: "none !important",
+      minHeight: "10vh",
+      maxHeight: "10vh",
+      [theme.breakpoints.up("sm")]: {
+        padding: "10px 50px !important",
+      },
     },
     navButtons: {
       display: "flex",
@@ -61,14 +65,7 @@ function Navbar() {
             >
               Home
             </Button>
-            <Button
-              variant={"text"}
-              sx={{ marginRight: "36px", marginLeft: "18px", color: "black" }}
-              onClick={loginUser}
-            >
-              Sign In
-            </Button>
-            <FilledButton text={"Sign Up"} onClick={loginUser} />
+            <FilledButton text={"Sign In"} onClick={loginUser} />
           </div>
         )}
         {user && (

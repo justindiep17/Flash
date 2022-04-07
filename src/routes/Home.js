@@ -41,11 +41,7 @@ function Home() {
   if (loading) {
     return <div>loading</div>;
   }
-  return (
-    <div className={styles.page}>
-      <Navbar></Navbar>
-    </div>
-  );
+  return <div className={styles.page}></div>;
 }
 
 export default Home;
