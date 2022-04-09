@@ -12,17 +12,18 @@ const useStyles = makeStyles((theme) =>
     flashCard: {
       background: "white",
       width: 350,
-      aspectRatio: "1.5 / 1",
+      minHeight: 233.33,
       borderRadius: "5px",
       display: "flex",
       alignItems: "stretch",
       justifyContent: "center",
       [theme.breakpoints.up("sm")]: {
         width: 650,
-        aspectRatio: "2 / 1",
+        minHeight: 325,
       },
       [theme.breakpoints.up("md")]: {
         width: 900,
+        minHeight: 450,
       },
       boxShadow: "5px 5px 12px 5px rgb(60 64 67 / 15%)",
       position: "relative",

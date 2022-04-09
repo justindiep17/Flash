@@ -1,47 +1,55 @@
-import { Button, Grid } from "@mui/material";
-import { auth } from "../config/firebase/firebaseSetup";
-import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { useParams, useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
 import { makeStyles, createStyles } from "@mui/styles";
-import { useAuthState } from "react-firebase-hooks/auth";
-import LandingPage from "../pages/LandingPage";
-import Navbar from "../components/Navbar";
+import { decks, users } from "../config/firebase/firebaseSetup";
+import { FieldPath, documentId, getDoc, getDocs } from "firebase/firestore";
+import { query, where } from "firebase/firestore";
+import { useCollectionDataOnce } from "react-firebase-hooks/firestore";
+import { Grid, Typography, Badge, Modal, Button } from "@mui/material";
+import EditDeckForm from "../components/EditDeckForm";
+import { getDeckRef } from "../config/decks";
+import Loading from "../components/Loading";
+import PublicFlashCard from "../components/PublicFlashCard";
+import ContentCopyIcon from "@mui/icons-material/ContentCopy";
+import EditIcon from "@mui/icons-material/Edit";
+import { useAuthStatus } from "../auth";
+import { deleteDeck } from "../config/decks";
+import StudyImage from "../assets/study.jpg";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
-    page: {
-      height: "100vh",
-      width: "100vw",
-      // background:
-      //   "url(https://peoplescience.maritz.com/-/media/Maritz/Project/PeopleScience/Articles/studying_student_library.ashx?h=900&w=1200&la=en&hash=9915CBACFC502B0D5A17609E5912912F622626FF)",
-      // backgroundRepeat: "no-repeat",
-      // backgroundSize: "100vw 100vh",
+    pageContent: {
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "flex-start",
+      alignItems: "center",
+      paddingBottom: "8vh",
+      minHeight: "100vh",
     },
     image: {
-      width: "100%",
-      height: "auto",
+      width: "100vw",
       objectFit: "cover",
-    },
-    description: {
-      background: "green",
-      width: "100%",
-      height: "100%",
-    },
-    imageDescriptionRow: {
-      display: "flex",
-      flexDirection: "row",
-      justifyContent: "stretch",
+      maxHeight: "100vh",
     },
   })
 );
 
 function Home() {
-  const provider = new GoogleAuthProvider();
   const styles = useStyles();
-  const [user, loading, error] = useAuthState(auth);
-  if (loading) {
-    return <div>loading</div>;
-  }
-  return <div className={styles.page}></div>;
+  const user = useAuthStatus();
+
+  return (
+    <main style={{ background: "#F5F5F5" }}>
+      <Grid
+        className={styles.pageContent}
+        container
+        display="flex"
+        flexDirection="column"
+      >
+        <img src={StudyImage} className={styles.image} />
+      </Grid>
+    </main>
+  );
 }
 
 export default Home;

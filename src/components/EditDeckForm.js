@@ -139,12 +139,12 @@ function EditDeckForm({ deck, deckRef }) {
         multiline
         label="Description"
         InputLabelProps={inputLabelProps}
-        InputProps={{
+        inputProps={{
           style: {
             fontWeight: 500,
-            height: "6rem",
             justifyContent: "flex-start",
-            paddingBottom: "10px",
+            padding: "4px 0px 10px",
+            height: "6rem",
           },
         }}
         className={styles.textInput}

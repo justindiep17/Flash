@@ -1,5 +1,10 @@
 import { styled } from "@mui/system";
-import { Button } from "@mui/material";
+import { Button, Menu, MenuItem, Typography } from "@mui/material";
+import { useState } from "react";
+import EditIcon from "@mui/icons-material/Edit";
+import LogoutIcon from "@mui/icons-material/Logout";
+import { logoutUser } from "../auth.js";
+import { useNavigate } from "react-router-dom";
 
 const ProfileImageButtonStyled = styled(Button)(({ theme }) => ({
   display: "flex",
@@ -21,11 +26,56 @@ const ImageStyled = styled("img")(({ theme }) => ({
   borderRadius: "50%",
 }));
 
-function ProfileImageButton({ src, onClick }) {
+function ProfileImageButton({ src }) {
+  const [anchorEl, setAnchorEl] = useState(null);
+  const navigate = useNavigate();
+  const handleOpen = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
   return (
-    <ProfileImageButtonStyled onClick={onClick}>
-      <ImageStyled src={src} />
-    </ProfileImageButtonStyled>
+    <div>
+      <ProfileImageButtonStyled onClick={handleOpen}>
+        <ImageStyled src={src} />
+      </ProfileImageButtonStyled>
+      <Menu
+        anchorEl={anchorEl}
+        open={Boolean(anchorEl)}
+        onClose={handleClose}
+        sx={{ marginTop: "10px" }}
+        keepMounted
+      >
+        <MenuItem
+          display="flex"
+          justifyContent="center"
+          alignItems="center"
+          sx={{ padding: "10px 20px" }}
+          onClick={() => {
+            navigate("/editProfile");
+          }}
+        >
+          <EditIcon />
+          <Typography sx={{ marginLeft: "8px" }}>Edit Profile</Typography>
+        </MenuItem>
+        <MenuItem
+          display="flex"
+          justifyContent="center"
+          alignItems="center"
+          sx={{ padding: "10px 20px" }}
+          onClick={() => {
+            logoutUser();
+            navigate("/");
+          }}
+        >
+          <LogoutIcon />
+          <Typography style={{ marginLeft: "8px" }}>Log Out</Typography>
+        </MenuItem>
+      </Menu>
+    </div>
   );
 }
 

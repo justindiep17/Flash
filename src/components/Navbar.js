@@ -47,7 +47,13 @@ function Navbar() {
   return (
     <Grid item xs={12}>
       <AppBar className={styles.navbar}>
-        <Typography item variant="h4">
+        <Typography
+          item
+          variant="h4"
+          onClick={() => {
+            navigate("/");
+          }}
+        >
           Flash
         </Typography>
         {!user && (
@@ -79,10 +85,7 @@ function Navbar() {
             >
               Dashboard
             </Button>
-            <ProfileImageButton
-              onClick={logoutUser}
-              src="https://t4.ftcdn.net/jpg/00/64/67/63/360_F_64676383_LdbmhiNM6Ypzb3FM4PPuFP9rHe7ri8Ju.jpg"
-            ></ProfileImageButton>
+            <ProfileImageButton src="https://t4.ftcdn.net/jpg/00/64/67/63/360_F_64676383_LdbmhiNM6Ypzb3FM4PPuFP9rHe7ri8Ju.jpg"></ProfileImageButton>
           </div>
         )}
       </AppBar>
