@@ -20,19 +20,23 @@ const flashTheme = createTheme({
   },
   typography: {
     allVariants: {
-      fontFamily: `"Raleway", "Helvetica", "Arial", sans-serif`,
+      fontFamily: `"Roboto", "Helvetica", "Arial", sans-serif`,
     },
     h1: {
-      fontSize: "2.5rem",
+      fontSize: "2.25rem",
       fontWeight: "700",
     },
     h2: {
       fontSize: "1.75rem",
       fontWeight: "700",
     },
+    h3: {
+      fontSize: "1.75rem",
+      fontWeight: "700",
+    },
     h4: {
       fontSize: "1.5rem",
-      fontWeight: "700",
+      fontWeight: "900",
     },
     h5: {
       fontSize: "1.1rem",
@@ -50,7 +54,7 @@ const flashTheme = createTheme({
           textTransform: "none",
           boxShadow: "none",
           fontWeight: "700",
-          borderRadius: "3.5px",
+          borderRadius: 0,
           fontSize: "0.9rem",
           "&:hover": {
             boxShadow: "none",

@@ -14,7 +14,7 @@ import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 import EditIcon from "@mui/icons-material/Edit";
 import { useAuthStatus } from "../auth";
 import { deleteDeck } from "../config/decks";
-import Navbar from "../components/Navbar";
+import Navbar from "../components/NavbarHome";
 import DeleteIcon from "@mui/icons-material/Delete";
 import FilledButton from "../components/FilledButton";
 

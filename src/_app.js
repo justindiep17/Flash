@@ -9,9 +9,9 @@ import EditDeckPage from "./pages/EditDeckPage";
 import { useAuthState } from "react-firebase-hooks/auth";
 import Loading from "./components/Loading";
 import PublicDeckPage from "./pages/PublicDeckPage";
-import Navbar from "./components/Navbar";
 import NotFoundPage from "./pages/NotFoundPage";
 import EditProfilePage from "./pages/EditProfilePage";
+import Footer from "./components/Footer";
 
 function App() {
   const [user, loading, error] = useAuthState(auth);
@@ -24,7 +24,6 @@ function App() {
     <ThemeProvider theme={flashTheme}>
       <AuthContext.Provider value={user}>
         <BrowserRouter>
-          <Navbar />
           <Routes>
             <Route path="/" element={<Home />}></Route>
             <Route path="dashboard" element={<Dashboard />}></Route>
@@ -33,6 +32,7 @@ function App() {
             <Route path="editProfile" element={<EditProfilePage />}></Route>
             <Route path="*" element={<NotFoundPage />}></Route>
           </Routes>
+          <Footer />
         </BrowserRouter>
       </AuthContext.Provider>
     </ThemeProvider>

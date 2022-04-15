@@ -8,7 +8,7 @@ import DeckButton from "../components/DeckButton";
 import { useState } from "react";
 import { useCollectionDataOnce } from "react-firebase-hooks/firestore";
 import Loading from "../components/Loading";
-import Navbar from "../components/Navbar";
+import Navbar from "../components/NavbarDefault";
 import NotFoundPage from "./NotFoundPage";
 
 const useStyles = makeStyles((theme) =>
@@ -75,9 +75,10 @@ function Dashboard() {
     }
     return (
       <main style={{ background: "#F5F5F5" }}>
+        <Navbar />
         <Grid container className={styles.pageContent} direction="column">
           <Grid item className={styles.sectionTitle} padding="0px 20px">
-            <Typography variant="h6" textAlign={"left"}>
+            <Typography variant="h5" textAlign={"left"}>
               Recent Decks
             </Typography>
           </Grid>
