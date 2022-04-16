@@ -1,22 +1,9 @@
-import { useParams, useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { makeStyles, createStyles } from "@mui/styles";
-import { decks, users } from "../config/firebase/firebaseSetup";
-import { FieldPath, documentId, getDoc, getDocs } from "firebase/firestore";
-import { query, where } from "firebase/firestore";
-import { useCollectionDataOnce } from "react-firebase-hooks/firestore";
-import { Grid, Typography, Badge, Modal, Button } from "@mui/material";
-import EditDeckForm from "../components/EditDeckForm";
-import { getDeckRef } from "../config/decks";
-import Loading from "../components/Loading";
-import PublicFlashCard from "../components/PublicFlashCard";
-import ContentCopyIcon from "@mui/icons-material/ContentCopy";
-import EditIcon from "@mui/icons-material/Edit";
-import { useAuthStatus } from "../auth";
-import { deleteDeck } from "../config/decks";
-import Navbar from "../components/NavbarHome";
-import DeleteIcon from "@mui/icons-material/Delete";
+import { Grid, Typography } from "@mui/material";
 import FilledButton from "../components/FilledButton";
+import Navbar from "../components/NavbarDefault";
+import Footer from "../components/Footer";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -37,6 +24,7 @@ function NotFoundPage() {
   const styles = useStyles();
   return (
     <main style={{ background: "#F5F5F5" }}>
+      <Navbar />
       <Grid container className={styles.pageContent} direction="column">
         <Typography variant="h1" sx={{ marginBottom: "16px" }}>
           Page Not Found
@@ -49,6 +37,7 @@ function NotFoundPage() {
           onClick={() => navigate("/")}
         ></FilledButton>
       </Grid>
+      <Footer />
     </main>
   );
 }

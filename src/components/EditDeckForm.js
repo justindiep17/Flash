@@ -129,7 +129,10 @@ function EditDeckForm({ deck, deckRef }) {
         label="Title"
         InputLabelProps={inputLabelProps}
         InputProps={{
-          style: { fontWeight: 500, paddingBottom: "5px" },
+          style: {
+            fontWeight: 500,
+            paddingBottom: "5px",
+          },
         }}
         className={styles.textInput}
         {...register("title")}
@@ -145,6 +148,7 @@ function EditDeckForm({ deck, deckRef }) {
             justifyContent: "flex-start",
             padding: "4px 0px 10px",
             height: "6rem",
+            fontFamily: "Pontano Sans",
           },
         }}
         className={styles.textInput}

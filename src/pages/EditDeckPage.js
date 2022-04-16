@@ -10,6 +10,8 @@ import { getDeckRef } from "../config/decks";
 import Loading from "../components/Loading";
 import NotFoundPage from "./NotFoundPage";
 import { useAuthStatus } from "../auth";
+import Navbar from "../components/NavbarDefault";
+import Footer from "../components/Footer";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -19,6 +21,7 @@ const useStyles = makeStyles((theme) =>
       alignItems: "center",
       paddingTop: "16vh",
       paddingBottom: "8vh",
+      minHeight: "100vh",
     },
     sectionTitle: {
       width: 350,
@@ -58,6 +61,7 @@ function EditDeckPage() {
     const deckRef = getDeckRef(id);
     return (
       <main>
+        <Navbar />
         <Grid container className={styles.pageContent} direction="column">
           <Grid item className={styles.sectionTitle} marginBottom="20px">
             <Typography variant="h4" textAlign={"left"}>
@@ -66,6 +70,7 @@ function EditDeckPage() {
           </Grid>
           <EditDeckForm deck={deck} deckRef={deckRef} />
         </Grid>
+        <Footer />
       </main>
     );
   }

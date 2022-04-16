@@ -10,6 +10,9 @@ import AddIcon from "@mui/icons-material/Add";
 import MenuBookIcon from "@mui/icons-material/MenuBook";
 import ShareIcon from "@mui/icons-material/Share";
 import Navbar from "../components/NavbarHome";
+import Footer from "../components/Footer";
+import { loginUser } from "../auth";
+import { useNavigate } from "react-router-dom";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -105,10 +108,11 @@ const useStyles = makeStyles((theme) =>
 
 function Home() {
   const styles = useStyles();
-  const user = useAuthStatus();
+  // const user = useAuthStatus();
   const theme = useTheme();
   const notSmallScreen = useMediaQuery(theme.breakpoints.up("sm"));
   const mediumScreenUp = useMediaQuery(theme.breakpoints.up("md"));
+  const navigate = useNavigate();
 
   const titleStyles = {
     fontWeight: "900",
@@ -160,6 +164,9 @@ function Home() {
               </Typography>
               <FilledButton
                 text="Get Started"
+                onClick={() => {
+                  loginUser().then(navigate("/dashboard"));
+                }}
                 sx={{ padding: notSmallScreen ? "17.5px 35px" : "10px 20px" }}
               />
             </Grid>
@@ -234,9 +241,13 @@ function Home() {
         </Grid>
         <FilledButton
           text="Get Started"
+          onClick={() => {
+            loginUser().then(navigate("/dashboard"));
+          }}
           sx={{ padding: notSmallScreen ? "17.5px 35px" : "10px 20px" }}
         />
       </Grid>
+      <Footer />
     </main>
   );
 }

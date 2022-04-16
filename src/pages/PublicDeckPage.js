@@ -12,8 +12,9 @@ import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 import EditIcon from "@mui/icons-material/Edit";
 import { useAuthStatus } from "../auth";
 import { deleteDeck } from "../config/decks";
-import Navbar from "../components/NavbarHome";
+import Navbar from "../components/NavbarDefault";
 import DeleteIcon from "@mui/icons-material/Delete";
+import Footer from "../components/Footer";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -56,7 +57,8 @@ const useStyles = makeStyles((theme) =>
     },
     descriptionText: {
       margin: "8px 0px",
-      fontSize: "1rem",
+      fontSize: "1.1rem",
+      fontFamily: "Pontano Sans",
     },
     linkCopiedAlert: {
       background: "#424242",
@@ -160,6 +162,7 @@ function PublicDeckPage() {
           if (linkCopied) setLinkCopied(false);
         }}
       >
+        <Navbar />
         <Grid
           className={styles.pageContent}
           container
@@ -189,7 +192,7 @@ function PublicDeckPage() {
                     {deck.title}
                   </Typography>
                   {deckAuthor && (
-                    <span>
+                    <span style={{ fontSize: "1.1rem" }}>
                       &nbsp; by{" "}
                       <span style={{ color: "#0047AB" }}>{deckAuthor}</span>
                     </span>
@@ -270,6 +273,7 @@ function PublicDeckPage() {
         >
           The deck URL has been copied to your clipboard.
         </div>
+        <Footer />
       </main>
     );
   }

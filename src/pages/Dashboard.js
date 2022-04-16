@@ -10,6 +10,7 @@ import { useCollectionDataOnce } from "react-firebase-hooks/firestore";
 import Loading from "../components/Loading";
 import Navbar from "../components/NavbarDefault";
 import NotFoundPage from "./NotFoundPage";
+import Footer from "../components/Footer";
 
 const useStyles = makeStyles((theme) =>
   createStyles({
@@ -78,7 +79,7 @@ function Dashboard() {
         <Navbar />
         <Grid container className={styles.pageContent} direction="column">
           <Grid item className={styles.sectionTitle} padding="0px 20px">
-            <Typography variant="h5" textAlign={"left"}>
+            <Typography variant="h4" textAlign={"left"}>
               Recent Decks
             </Typography>
           </Grid>
@@ -90,6 +91,7 @@ function Dashboard() {
                 .map((doc) => <DeckButton deck={doc}></DeckButton>)}
           </Grid>
         </Grid>
+        <Footer />
       </main>
     );
   }

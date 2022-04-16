@@ -81,14 +81,7 @@ function Navbar() {
             : { background: "none" }
         }
       >
-        <Typography
-          item
-          sx={{ color: "white" }}
-          variant="h4"
-          onClick={() => {
-            navigate("/");
-          }}
-        >
+        <Typography item sx={{ color: "white" }} variant="h4">
           StudyBuddy
         </Typography>
         {notSmallScreen && (
@@ -118,9 +111,21 @@ function Navbar() {
                 onClick={() => {
                   navigate("/dashboard", { replace: true });
                 }}
-                sx={{ marginRight: "0px !important" }}
               >
                 <Typography className={styles.buttonText}>Dashboard</Typography>
+              </Button>
+            )}
+            {user && (
+              <Button
+                variant={"text"}
+                className={styles.navButton}
+                onClick={() => {
+                  logoutUser();
+                  navigate("/");
+                }}
+                sx={{ marginRight: "0px !important" }}
+              >
+                <Typography className={styles.buttonText}>Sign Out</Typography>
               </Button>
             )}
           </div>

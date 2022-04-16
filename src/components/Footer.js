@@ -12,6 +12,7 @@ const useStyles = makeStyles((theme) =>
         fontSize: "1.1rem",
         marginRight: "8px",
       },
+      background: "white",
     },
     text: {
       fontFamily: "Pontano Sans !important",

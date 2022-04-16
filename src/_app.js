@@ -29,10 +29,9 @@ function App() {
             <Route path="dashboard" element={<Dashboard />}></Route>
             <Route path="deck/:id" element={<PublicDeckPage />}></Route>
             <Route path="edit/:id" element={<EditDeckPage />}></Route>
-            <Route path="editProfile" element={<EditProfilePage />}></Route>
+            {/* <Route path="editProfile" element={<EditProfilePage />}></Route> */}
             <Route path="*" element={<NotFoundPage />}></Route>
           </Routes>
-          <Footer />
         </BrowserRouter>
       </AuthContext.Provider>
     </ThemeProvider>

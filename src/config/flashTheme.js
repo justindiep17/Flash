@@ -36,10 +36,10 @@ const flashTheme = createTheme({
     },
     h4: {
       fontSize: "1.5rem",
-      fontWeight: "900",
+      fontWeight: "700",
     },
     h5: {
-      fontSize: "1.1rem",
+      fontSize: "1.3rem",
       fontWeight: "700",
     },
     h6: {
@@ -75,6 +75,13 @@ const flashTheme = createTheme({
           fontSize: "1rem",
           "&:hover": {
             boxShadow: "none",
+          },
+        },
+      },
+      defaultProps: {
+        inputProps: {
+          style: {
+            fontFamily: "Pontano Sans",
           },
         },
       },
