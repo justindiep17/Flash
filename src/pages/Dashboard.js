@@ -61,6 +61,7 @@ function Dashboard() {
   if (loading) {
     return <Loading />;
   } else if (!user || error) {
+    console.log(error);
     return <NotFoundPage />;
   } else {
     if (values) {

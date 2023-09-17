@@ -26,6 +26,7 @@ function Footer() {
   const styles = useStyles();
   return (
     <Grid
+      item
       xs={12}
       className={styles.footer}
       display="flex"

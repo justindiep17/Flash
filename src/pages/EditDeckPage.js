@@ -48,13 +48,13 @@ function EditDeckPage() {
   if (loading) {
     return <Loading />;
   } else if (error) {
+    console.error(error);
     return <NotFoundPage />;
   } else if (!values || values.length === 0) {
+    console.error('values length <= 0')
     return <NotFoundPage />;
   } else if (!user || user.uid !== values[0].uid) {
-    console.log("here");
-    console.log(values[0].uid === user.uid);
-    console.log(user);
+    console.error("user can not access");
     return <NotFoundPage />;
   } else {
     const deck = values[0];
